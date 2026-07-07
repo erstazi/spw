@@ -70,7 +70,7 @@ local function spw_register_place(name, command, setting_name)
         if target_pos and target_pos.x ~= 0 then
           local safe_pos = {x = target_pos.x, y = target_pos.y + 1, z = target_pos.z}
           player:setpos(safe_pos)
-          return true, "Teleporting to " .. name .. "..."
+          return true, "Teleported to " .. name .. "..."
         else
           return true, core.colorize("#FF7C7C", "-!- Position for " .. name .. " is not set!")
         end
