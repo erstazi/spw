@@ -2,7 +2,7 @@
 -- Unified Teleport System with /set support + xban jail check
 -- ========================
 
-local mod_storage = minetest.get_mod_storage()
+local mod_storage = core.get_mod_storage()
 local execution_pos = {x = -310, y = 0, z = -40}
 local S = core.get_translator("spw")
 
@@ -12,6 +12,7 @@ spw.pos = {
   spawn = vector.new(),
   city = vector.new(),
   apartment = vector.new(),
+  stadium = vector.new(),
 }
 
 -- Helper functions
@@ -19,7 +20,7 @@ local function get_pos(name)
   -- Try mod_storage first
   local str = mod_storage:get_string("pos_" .. name)
   if str and str ~= "" then
-    return minetest.string_to_pos(str)
+    return core.string_to_pos(str)
   end
 
   -- Fallback to old settings
@@ -29,12 +30,14 @@ local function get_pos(name)
     return core.setting_get_pos("city_pos")
   elseif name == "apartment" then
     return core.setting_get_pos("apartment_pos")
+  elseif name == "stadium" then
+    return core.setting_get_pos("stadium_pos")
   end
   return nil
 end
 
 local function set_pos(name, pos)
-  mod_storage:set_string("pos_" .. name, minetest.pos_to_string(pos))
+  mod_storage:set_string("pos_" .. name, core.pos_to_string(pos))
 end
 
 -- Reusable registration function
@@ -43,11 +46,11 @@ local function spw_register_place(name, command, setting_name)
     command = name:lower():gsub(" ", "_")
   end
 
-  minetest.register_chatcommand(command, {
+  core.register_chatcommand(command, {
     params = "[set]",
     description = "Teleport to " .. name,
     func = function(player_name, params)
-      local player = minetest.get_player_by_name(player_name)
+      local player = core.get_player_by_name(player_name)
       if not player then
         return false, "Player not found"
       end
@@ -85,15 +88,16 @@ end
 spw_register_place("Spawn", "spawn", "static_spawnpoint")
 spw_register_place("Apartment", "apt", "apartment_pos")
 spw_register_place("City", "city", "city_pos")
+spw_register_place("Stadium", "stadium", "stadium_pos")
 
 -- ========================
 -- /places command
 -- ========================
-minetest.register_chatcommand("places", {
+core.register_chatcommand("places", {
   params = "",
   description = "List all available teleport locations",
   func = function(name, param)
-    local player = minetest.get_player_by_name(name)
+    local player = core.get_player_by_name(name)
     if not player then
       return false, "Player not found"
     end
@@ -102,7 +106,8 @@ minetest.register_chatcommand("places", {
     msg = msg .. core.colorize("yellow", "/spawn") .. " - Spawn/Lobby\n"
     msg = msg .. core.colorize("yellow", "/apt") .. " - Apartment\n"
     msg = msg .. core.colorize("yellow", "/city") .. " - City\n"
-    minetest.chat_send_player(name, msg)
+    msg = msg .. core.colorize("yellow", "/stadium") .. " - Stadium\n"
+    core.chat_send_player(name, msg)
     return true
   end,
 })
