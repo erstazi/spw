@@ -13,6 +13,8 @@ spw.pos = {
   city = vector.new(),
   apartment = vector.new(),
   stadium = vector.new(),
+  horses = vector.new(),
+  archery = vector.new(),
 }
 
 -- Helper functions
@@ -32,6 +34,10 @@ local function get_pos(name)
     return core.setting_get_pos("apartment_pos")
   elseif name == "stadium" then
     return core.setting_get_pos("stadium_pos")
+  elseif name == "horses" then
+    return core.setting_get_pos("horses_pos")
+  elseif name == "archery" then
+    return core.setting_get_pos("archery_pos")
   end
   return nil
 end
@@ -89,6 +95,8 @@ spw_register_place("Spawn", "spawn", "static_spawnpoint")
 spw_register_place("Apartment", "apt", "apartment_pos")
 spw_register_place("City", "city", "city_pos")
 spw_register_place("Stadium", "stadium", "stadium_pos")
+spw_register_place("Horse Track", "horses", "horses_pos")
+spw_register_place("Archery Range", "archery", "archery_pos")
 
 -- ========================
 -- /places command
@@ -107,6 +115,8 @@ core.register_chatcommand("places", {
     msg = msg .. core.colorize("yellow", "/apt") .. " - Apartment\n"
     msg = msg .. core.colorize("yellow", "/city") .. " - City\n"
     msg = msg .. core.colorize("yellow", "/stadium") .. " - Stadium\n"
+    msg = msg .. core.colorize("yellow", "/horses") .. " - Horse Track\n"
+    msg = msg .. core.colorize("yellow", "/Archery") .. " - Archery Range\n"
     core.chat_send_player(name, msg)
     return true
   end,
