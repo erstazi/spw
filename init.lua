@@ -116,7 +116,7 @@ core.register_chatcommand("places", {
     msg = msg .. core.colorize("yellow", "/city") .. " - City\n"
     msg = msg .. core.colorize("yellow", "/stadium") .. " - Stadium\n"
     msg = msg .. core.colorize("yellow", "/horses") .. " - Horse Track\n"
-    msg = msg .. core.colorize("yellow", "/Archery") .. " - Archery Range\n"
+    msg = msg .. core.colorize("yellow", "/archery") .. " - Archery Range\n"
     core.chat_send_player(name, msg)
     return true
   end,
