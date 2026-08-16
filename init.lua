@@ -61,7 +61,9 @@ local function spw_register_place(name, command, setting_name)
         return false, "Player not found"
       end
 
-      if xban and xban.get_property(player_name, "jailed") then
+      local xban_available = core.get_modpath("xban") ~= nil
+
+      if xban_available and xban and xban.get_property(player_name, "jailed") then
         player:setpos(execution_pos)
         return true, "Nice try! You can't escape!"
       end
