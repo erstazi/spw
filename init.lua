@@ -52,9 +52,11 @@ local function spw_register_place(name, command, setting_name)
     command = name:lower():gsub(" ", "_")
   end
 
+  local localized_name = S(name)
+
   core.register_chatcommand(command, {
     params = "[set]",
-    description = S("Teleport to @1", name),
+    description = S("Teleport to @1", localized_name),
     func = function(player_name, params)
       local player = core.get_player_by_name(player_name)
       if not player then
@@ -72,7 +74,7 @@ local function spw_register_place(name, command, setting_name)
         if core.check_player_privs(player_name, {server = true}) then
           local pos = vector.floor(player:get_pos())
           set_pos(command, pos)
-          return true, core.colorize("lightgreen", "-!- " .. S("@1 position updated!", name) )
+          return true, core.colorize("lightgreen", "-!- " .. S("@1 position updated!", localized_name) )
         else
           return true, core.colorize("#FF7C7C", "-!- " .. S("No permission to set position!") )
         end
@@ -81,9 +83,9 @@ local function spw_register_place(name, command, setting_name)
         if target_pos and target_pos.x ~= 0 then
           local safe_pos = {x = target_pos.x, y = target_pos.y + 1, z = target_pos.z}
           player:setpos(safe_pos)
-          return true, S("Teleported to @1...", name)
+          return true, S("Teleported to @1...", localized_name)
         else
-          return true, core.colorize("#FF7C7C", "-!- " .. S("Position for @1 is not set!", name) )
+          return true, core.colorize("#FF7C7C", "-!- " .. S("Position for @1 is not set!", localized_name) )
         end
       end
     end,
@@ -113,7 +115,7 @@ core.register_chatcommand("places", {
     end
 
     local msg = core.colorize("lightgreen", "=== " .. S("Available Teleports") .. " ===\n")
-    msg = msg .. core.colorize("yellow", "/spawn") .. " - " .. S("Spawn/Lobby") .. "\n"
+    msg = msg .. core.colorize("yellow", "/spawn") .. " - " .. S("Spawn") .. "\n"
     msg = msg .. core.colorize("yellow", "/apt") .. " - " .. S("Apartment") .. "\n"
     msg = msg .. core.colorize("yellow", "/city") .. " - " .. S("City") .. "\n"
     msg = msg .. core.colorize("yellow", "/stadium") .. " - " .. S("Stadium") .. "\n"
