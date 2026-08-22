@@ -49,3 +49,6 @@ msgstr "Horse Track"
 
 msgid "Archery Range"
 msgstr "Archery Range"
+
+msgid "Public Mine"
+msgstr "Public Mine"

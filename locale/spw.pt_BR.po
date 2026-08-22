@@ -49,3 +49,6 @@ msgstr "Hipódromo"
 
 msgid "Archery Range"
 msgstr "Campo de tiro com arco"
+
+msgid "Public Mine"
+msgstr "Mina Pública"

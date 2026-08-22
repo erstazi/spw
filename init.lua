@@ -38,6 +38,8 @@ local function get_pos(name)
     return core.setting_get_pos("horses_pos")
   elseif name == "archery" then
     return core.setting_get_pos("archery_pos")
+  elseif name == "mine" then
+    return core.setting_get_pos("mine_pos")
   end
   return nil
 end
@@ -101,6 +103,7 @@ spw_register_place("City", "city", "city_pos")
 spw_register_place("Stadium", "stadium", "stadium_pos")
 spw_register_place("Horse Track", "horses", "horses_pos")
 spw_register_place("Archery Range", "archery", "archery_pos")
+spw_register_place("Public Mine", "mine", "mine_pos")
 
 -- ========================
 -- /places command
@@ -121,6 +124,7 @@ core.register_chatcommand("places", {
     msg = msg .. core.colorize("yellow", "/stadium") .. " - " .. S("Stadium") .. "\n"
     msg = msg .. core.colorize("yellow", "/horses") .. " - " .. S("Horse Track") .. "\n"
     msg = msg .. core.colorize("yellow", "/archery") .. " - " .. S("Archery Range") .. "\n"
+    msg = msg .. core.colorize("yellow", "/mine") .. " - " .. S("Public Mine") .. "\n"
     core.chat_send_player(name, msg)
     return true
   end,

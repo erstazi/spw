@@ -49,3 +49,6 @@ msgstr "Tor wyścigów konnych"
 
 msgid "Archery Range"
 msgstr "Tor łuczniczy"
+
+msgid "Public Mine"
+msgstr "Publiczna Kopalnia"

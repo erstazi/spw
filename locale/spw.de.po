@@ -49,3 +49,6 @@ msgstr "Pferderennbahn"
 
 msgid "Archery Range"
 msgstr "Bogenschießplatz"
+
+msgid "Public Mine"
+msgstr "Öffentliche Mine"

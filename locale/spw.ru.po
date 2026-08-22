@@ -49,3 +49,6 @@ msgstr "Ипподром"
 
 msgid "Archery Range"
 msgstr "Стрельбище из лука"
+
+msgid "Public Mine"
+msgstr "Общественная Шахта"

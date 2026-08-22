@@ -49,3 +49,6 @@ msgstr "Paardenrenbaan"
 
 msgid "Archery Range"
 msgstr "Boogschietbaan"
+
+msgid "Public Mine"
+msgstr "Openbare Mijn"
